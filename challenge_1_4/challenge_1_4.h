@@ -58,6 +58,27 @@ inline bool FileReadAllLines(const std::string & filename, std::vector<std::stri
     return true;
 }
 
+inline std::string RemoveWhitespace(const std::string & str)
+{
+    std::string result;
+    result.reserve(str.length());
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (isspace(str[i]))
+            continue;
+        result.push_back(str[i]);
+    }
+    return std::move(result);
+}
+
+inline bool FileReadAllNoWhitespaceText(const std::string & filename, std::string & str)
+{
+    if (!FileReadAllText(filename, str))
+        return false;
+    str = RemoveWhitespace(str);
+    return true;
+}
+
 inline void FindBestSingleXorCandidate(const std::vector<std::vector<unsigned char>> & dataList, size_t & bestIndex, unsigned char & bestKey, int & bestScore)
 {
     bestScore = 0;
