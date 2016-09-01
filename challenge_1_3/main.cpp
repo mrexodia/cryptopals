@@ -12,7 +12,7 @@ int main()
         unsigned char bestKey = 0;
         FindBestSingleXorKey(data, bestKey, bestScore);
         printf("best score: %d, best key: %02X\n", bestScore, bestKey);
-        auto bestDecrypted = XorCipher(data, bestKey);
+        auto bestDecrypted = SingleXorCipher(data, bestKey);
         puts(VectorToString(bestDecrypted).c_str());
     }
     getchar();
