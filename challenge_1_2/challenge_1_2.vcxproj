@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B3F61139-DBFB-456C-86DF-61409F7746C7}</ProjectGuid>
-    <RootNamespace>challenge_1_1</RootNamespace>
+    <ProjectGuid>{4EDA0E00-2B1F-4B58-A7F8-2A984AA42708}</ProjectGuid>
+    <RootNamespace>challenge_1_2</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -67,7 +67,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="challenge_1_1.h" />
+    <ClInclude Include="challenge_1_2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
