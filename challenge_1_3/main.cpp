@@ -10,20 +10,7 @@ int main()
     {
         auto bestScore = 0;
         unsigned char bestKey = 0;
-        for (auto i = 0; i < 256; i++)
-        {
-            auto key = (unsigned char)i;
-            auto decrypted = XorCipher(data, key);
-            size_t frequency[256];
-            AnalyzeFrequency(decrypted, frequency);
-            auto score = ScoreFrequency(frequency);
-            if (score > bestScore)
-            {
-                bestScore = score;
-                bestKey = key;
-            }
-            //printf("score for key %02X: %d\n", key, score);
-        }
+        FindBestSingleXorKey(data, bestKey, bestScore);
         printf("best score: %d, best key: %02X\n", bestScore, bestKey);
         auto bestDecrypted = XorCipher(data, bestKey);
         puts(VectorToString(bestDecrypted).c_str());
