@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../challenge_1_5/challenge_1_5.h"
+#include <climits>
 
 inline int BitsSet(unsigned char c)
 {
@@ -43,9 +44,11 @@ inline bool TakeBytes(const std::vector<unsigned char> & data, size_t start, siz
     return true;
 }
 
-inline void BreakRepeatingXor(const std::vector<unsigned char> & ciphertext, std::vector<unsigned char> & foundKey)
+inline int FindRepeatingXorKeysize(const std::vector<unsigned char> & ciphertext, int lowerBound = 2, int upperBound = 40)
 {
-    for (auto KEYSIZE = 0; KEYSIZE < 40; KEYSIZE++)
+    int smallestDistance = INT_MAX;
+    auto smallestKeysize = lowerBound;
+    for (auto KEYSIZE = lowerBound; KEYSIZE < upperBound; KEYSIZE++)
     {
         std::vector<unsigned char> first, second;
         if (!TakeBytes(ciphertext, 0, KEYSIZE, first) || !TakeBytes(ciphertext, KEYSIZE, KEYSIZE, second))
@@ -55,5 +58,17 @@ inline void BreakRepeatingXor(const std::vector<unsigned char> & ciphertext, std
         }
         auto distance = HammingDistance(first, second);
         auto normalized = distance / KEYSIZE;
+        if (normalized < smallestDistance)
+        {
+            printf("found better %d from %d (distance: %d), keysize: %d\n", normalized, smallestDistance, distance, KEYSIZE);
+            smallestDistance = normalized;
+            smallestKeysize = KEYSIZE;
+        }
     }
+    return smallestKeysize;
+}
+
+inline void BreakRepeatingXor(const std::vector<unsigned char> & ciphertext, std::vector<unsigned char> & foundKey)
+{
+    auto KEYSIZE = FindRepeatingXorKeysize(ciphertext);
 }

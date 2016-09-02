@@ -15,7 +15,8 @@ int main()
             puts("FromBase64 failed...");
         else
         {
-            
+            std::vector<unsigned char> key;
+            BreakRepeatingXor(data, key);
         }
     }
     getchar();
