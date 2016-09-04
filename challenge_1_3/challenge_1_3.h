@@ -30,7 +30,7 @@ inline int ScoreFrequency(size_t frequency[256])
             continue;
         if (!isgraph(i) && !isspace(i))
         {
-            score = 0;
+            score -= priority.length() * frequency[i];
             continue;
         }
         auto basescore = 1;
