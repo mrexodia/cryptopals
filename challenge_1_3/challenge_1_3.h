@@ -28,17 +28,17 @@ inline int ScoreFrequency(size_t frequency[256])
     {
         if (!frequency[i])
             continue;
-        char ch = tolower(i) != -1 ? tolower(i) : i;
-        auto pos = priority.find(ch);
-        if (pos == std::string::npos)
+        if (!isgraph(i) && !isspace(i))
         {
-            //Deduct points for out-of-alphabet frequencies
-            score -= priority.length() * frequency[i];
+            score = 0;
             continue;
         }
-        auto basescore = priority.length() - pos;
+        auto basescore = 1;
+        auto pos = priority.find(tolower(i));
+        if (pos != std::string::npos)
+            basescore = priority.length() - pos;
         score += frequency[i] * basescore;
-        //printf("found %c at position %u, frequency: %u, basescore: %u!\n", ch, pos, frequency[i], basescore);
+        //printf("found %c at position %u, frequency: %u, basescore: %u!\n", i, pos, frequency[i], basescore);
     }
     return score;
 }
