@@ -3,7 +3,7 @@
 #include "aes.h"
 #include "../challenge_1_6/challenge_1_6.h"
 
-inline bool aes_ecb_decrypt(const std::vector<unsigned char> & data, const std::vector<unsigned char> & key, std::vector<unsigned char> & out)
+inline bool DecryptAesEcb(const std::vector<unsigned char> & data, const std::vector<unsigned char> & key, std::vector<unsigned char> & out)
 {
     if (key.size() != 16)
         return false;

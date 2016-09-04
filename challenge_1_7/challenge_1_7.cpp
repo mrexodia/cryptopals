@@ -15,7 +15,7 @@ int main()
         else
         {
             std::vector<unsigned char> decrypted;
-            if (!aes_ecb_decrypt(data, StringToVector("YELLOW SUBMARINE"), decrypted))
+            if (!DecryptAesEcb(data, StringToVector("YELLOW SUBMARINE"), decrypted))
                 puts("aes_ecb_decrypt failed...");
             else
             {
