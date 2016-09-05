@@ -17,7 +17,7 @@ int main()
         {
             std::vector<unsigned char> key;
             BreakRepeatingXor(data, key);
-            printf("Found key %s\n", ToHex(key).c_str());
+            printf("Found key: %s\n", VectorToString(key).c_str());
             puts(VectorToString(RepeatingXorCipher(data, key)).c_str());
         }
     }
